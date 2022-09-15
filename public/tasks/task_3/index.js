@@ -1,38 +1,63 @@
+// В файле /public/task_3/index.js допишите функцию проверки анаграмм checkAnagram(anagramArray).
+
+// Аргументом функции checkAnagram является массив строк, которые нужно проверить.
+
+// Возвращаемое значение — true/false в зависимости от того можно ли все слова массива составить из одних и тех же букв.
+
 function checkAnagram(anagramArray) {
-  let AAL = anagramArray.length;
+	const arrayLength = anagramArray.length
+	const isEmptyArray = arrayLength === 0
+	const isOneWordArray = arrayLength === 1
+	const wordsAreDifferentLength = anagramArray.some(
+		//Метод some() проверяет, удовлетворяет ли какой-либо элемент массива условию, заданному в передаваемой функции.
+		word => word.length !== anagramArray[0].length
+	)
 
-  if (AAL === 0 || AAL === 1) return false;
+	// Если слов нет, или оно одно, или слова из разного количества символов
+	// Это не анаграмма!
+	if (isEmptyArray || isOneWordArray || wordsAreDifferentLength) {
+		return false
+	}
 
-  let El1L = anagramArray[0].length;
-  for (let i = 0; i < AAL; i++)
-    if (anagramArray[i].length !== El1L) return false;
+	// Флаг, в который мы запишем, является ли слово анаграммой при итерировании по массивам.
+	let allWordsAreAnagrams = true
 
-  for (let i = 0; i < AAL; i++) {
-    anagramArray[i] = anagramArray[i].toLowerCase();
-  }
+	// Проходимся по словам в массиве, начиная с первого
+	for (let i = 0; i < anagramArray.length; i++) {
+		// Записываем текущее слово в переменную word
+		const word = anagramArray[i]
+		// Записываем следующее слово в переменную nextWord
+		const nextWord = anagramArray[i + 1]
 
-  let LetterArray = anagramArray[0];
-  let LAL = LetterArray.length;
-  for (let i = 0; i < AAL; i++) {
-    let flagAr = [];
-    for (let j = 0; j < LAL; j++) {
-      let flag = 0;
-      for (let k = 0; k < LAL; k++) {
-        if (anagramArray[i][j] === LetterArray[k]) {
-          flagAr.push(k);
-          flag = 1;
-          break;
-        }
-      }
-      for (let n = 0; n < flagAr.length; n++)
-        for (let m = 0; m < flagAr.length; m++) {
-          if (flagAr[n] === flagAr[m] && n != m) return false;
-        }
-      if (flag === 0) return false;
-    }
-  }
+		// Если следующего слова нет - выходим из цикла
+		if (typeof nextWord === 'undefined') {
+			break
+		}
 
-  return true;
+		// Проходимся по буквам слова
+		for (let j = 0; j < word.length; j++) {
+			// Если в следующем слове есть такая же буква - всё ок
+			const nextWordHasSameLetter = nextWord.indexOf(word[j]) !== -1
+			if (nextWordHasSameLetter) {
+				allWordsAreAnagrams = true
+				// Если нет - сбрасываем флаг в false, выходим из цикла
+			} else {
+				allWordsAreAnagrams = false
+				break
+			}
+		}
+
+		// Пример: кот, ток
+		// Первая итерация первого цикла и первая итерация второго цикла:
+		// Второй цикл будет работать до дех пор, пока не закончатся буквы в первом слове (кот)
+		// В переменную nextWordHasSameLetter записываем логическое значение true или false, которое высчитывается из следующего: метод .indexOf проходится по строке второго слова (картон, оно же nextWord) и ищет в нем первую букву первого слова (word[j] == к). Если word[j] будет в начале, то метод вернет 0, если word[j] будет в другом месте, то метод вернет 1, если word[j] не найдется, то метод вернет -1. Далее сравнивается, что вернет метод с -1, если буква была найдена, следовательно вернется 1 или 0, следовательно nextWordHasSameLetter будет равно true
+		// Если nextWordHasSameLetter = true, тогда allWordsAreAnagrams = true
+		// Вторая итерация второго цикла
+		// Теперь будет сравниваться вторая буква первого слова (word) с вторым словом (nextWord)
+		// И так далее. Все итерации второго цикла должны вернуть true иначе allWordsAreAnagrams = false и break
+	}
+
+	return allWordsAreAnagrams
 }
 
-export { checkAnagram };
+export { checkAnagram }
