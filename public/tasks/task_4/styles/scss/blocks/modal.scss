@@ -1,0 +1,64 @@
+.project-modal {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba($color: #000000, $alpha: 0.8);
+
+	&__content {
+		width: 400px;
+		height: 300px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+
+		padding: 10px;
+		border-radius: 10px;
+
+		background-color: #f3f3f3;
+		position: relative;
+
+		z-index: 2;
+	}
+
+	&__close {
+		position: absolute;
+		top: 0;
+		right: 10px;
+
+		font-size: 40px;
+
+		color: #aaa;
+
+		transition: color 0.3s;
+
+		&:hover {
+			color: #326cf9;
+		}
+	}
+	&__text {
+		text-align: center;
+		font-size: 24px;
+	}
+
+	&__link {
+		font-size: 60px;
+
+		color: #000000;
+
+		transition: color 0.3s;
+
+		&:hover {
+			color: #326cf9;
+		}
+	}
+}

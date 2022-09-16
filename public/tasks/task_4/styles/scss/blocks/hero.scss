@@ -1,0 +1,108 @@
+.hero {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+		grid-gap: 20px;
+	}
+
+	&__about {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&__name {
+		font-size: 48px;
+		line-height: 1.1;
+
+		color: #ffffff;
+	}
+
+	&__title {
+		font-size: 32px;
+		font-weight: 400;
+
+		color: #ffffff;
+
+		margin-top: 25px;
+	}
+
+	&__description {
+		margin-top: 20px;
+		color: #b6b6b6;
+	}
+
+	&__links {
+		display: flex;
+		gap: 10px;
+
+		margin-top: 15px;
+	}
+
+	&__link {
+		font-size: 30px;
+
+		color: #ffffff;
+
+		transition: color 0.3s;
+
+		&:hover {
+			color: #326cf9;
+		}
+	}
+
+	&__box {
+		max-width: 500px;
+		max-height: 400px;
+		justify-self: center;
+		overflow: hidden;
+
+		background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+		border: 10px solid #ffffff;
+		box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+
+		animation: ava-animate 10s infinite alternate;
+
+		&-img {
+			animation: ava-bg 10s infinite alternate;
+			pointer-events: none;
+		}
+	}
+}
+
+@keyframes ava-animate {
+	0% {
+		border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+	}
+
+	25% {
+		border-radius: 41% 59% 53% 47% / 18% 42% 58% 82%;
+	}
+
+	50% {
+		border-radius: 24% 76% 59% 41% / 18% 57% 43% 82%;
+	}
+
+	75% {
+		border-radius: 40% 60% 76% 24% / 37% 72% 28% 63%;
+	}
+
+	100% {
+		border-radius: 40% 60% 54% 46% / 25% 83% 17% 75%;
+	}
+}
+
+@keyframes ava-bg {
+	from {
+		backdrop-filter: hue-rotate(0);
+	}
+
+	to {
+		backdrop-filter: hue-rotate(90deg);
+	}
+}

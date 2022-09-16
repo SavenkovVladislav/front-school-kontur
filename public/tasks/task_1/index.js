@@ -5,11 +5,13 @@ function getArrays(number) {
 	let arrayForThree = []
 	let arrayForFive = []
 
+	// проверка на тип параметра
 	if (typeof number !== 'number') {
 		console.log('Введите целое число')
 		return
 	}
 
+	// проверка знака параметра
 	if (Math.sign(number) === 1) {
 		for (let i = 1; i < number + 1; i++) {
 			if (i % 3 === 0) arrayForThree.push(i)
@@ -20,9 +22,6 @@ function getArrays(number) {
 			if (i % 3 === 0) arrayForThree.push(i)
 			if (i % 5 === 0) arrayForFive.push(i)
 		}
-	} else if (number === 0) {
-		result[0] = arrayForThree
-		result[1] = arrayForFive
 	}
 
 	result[0] = arrayForThree
@@ -30,3 +29,5 @@ function getArrays(number) {
 
 	return result
 }
+
+export default getArrays

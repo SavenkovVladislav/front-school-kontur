@@ -1,0 +1,44 @@
+.header {
+	width: 100%;
+	padding: 15px;
+
+	position: fixed;
+	z-index: 1;
+
+	background-color: #000000;
+
+	.nav {
+		&__list {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+
+		&__link {
+			a {
+				display: block;
+				font-size: 16px;
+
+				border: 1px solid #326cf9;
+				border-radius: 5px;
+
+				padding: 5px 10px;
+
+				color: #ffffff;
+
+				transition: margin-top 0.3s;
+				cursor: pointer;
+
+				text-decoration: none;
+				outline: none;
+
+				&:hover {
+					background-color: #326cf9;
+
+					transition: margin-top 0.3s, background-color 0.3s;
+				}
+			}
+		}
+	}
+}
